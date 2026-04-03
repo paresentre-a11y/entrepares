@@ -5,8 +5,8 @@
   "/dashboard/editar/[id]/page": "app/dashboard/editar/[id]/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/debug/page": "app/debug/page.js",
-  "/nosotros/page": "app/nosotros/page.js",
   "/equipo/page": "app/equipo/page.js",
-  "/page": "app/page.js",
-  "/login/page": "app/login/page.js"
+  "/login/page": "app/login/page.js",
+  "/nosotros/page": "app/nosotros/page.js",
+  "/page": "app/page.js"
 }
