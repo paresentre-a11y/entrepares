@@ -1,3 +1,4 @@
+cat > next.config.js << 'EOF'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -9,11 +10,8 @@ const nextConfig = {
         port: '',
         pathname: '/storage/v1/object/public/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'www.entrepares.cloud',
-      },
     ],
   },
 }
 module.exports = nextConfig
+EOF
