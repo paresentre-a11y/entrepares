@@ -1,5 +1,12 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/blog/[slug]/page": "app/blog/[slug]/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/dashboard/editar/[id]/page": "app/dashboard/editar/[id]/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/debug/page": "app/debug/page.js",
   "/nosotros/page": "app/nosotros/page.js",
   "/equipo/page": "app/equipo/page.js",
-  "/blog/page": "app/blog/page.js"
+  "/page": "app/page.js",
+  "/login/page": "app/login/page.js"
 }
