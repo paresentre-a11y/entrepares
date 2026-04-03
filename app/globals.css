@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --azul-oscuro: #003580;
+  --azul-claro:  #0066CC;
+  --azul-medio:  #0047AB;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  h1,h2,h3,h4,h5,h6 { font-family: 'Space Grotesk', sans-serif; }
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  textarea { font-size: max(16px, 1rem); }
+}
+
+@layer components {
+  .btn-ep {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           rounded-ep font-display font-semibold text-sm
+           transition-all duration-300 relative overflow-hidden
+           cursor-pointer border-none;
+  }
+  .btn-primary {
+    @apply btn-ep bg-gradient-to-br from-azul-claro to-azul-medio
+           text-white shadow-ep hover:-translate-y-0.5
+           hover:shadow-ep-lg active:translate-y-0;
+  }
+  .btn-outline {
+    @apply btn-ep border-2 border-white/60 text-white
+           hover:bg-white hover:text-azul-claro;
+  }
+  .card-ep {
+    @apply bg-white rounded-ep-lg shadow-ep transition-all duration-300
+           hover:-translate-y-1 hover:shadow-ep-lg overflow-hidden;
+  }
+  .input-ep {
+    @apply w-full px-4 py-3 border-2 border-gris-medio rounded-ep
+           font-body text-ep-texto transition-all duration-300
+           focus:outline-none focus:border-azul-claro
+           focus:ring-2 focus:ring-azul-claro/10 bg-white;
+  }
+  .label-ep {
+    @apply block text-sm font-medium text-ep-texto mb-2;
+  }
+}
