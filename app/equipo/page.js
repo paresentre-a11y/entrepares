@@ -8,7 +8,7 @@ const EQUIPO = [
     descripcion: 'Docente facilitador y coach en tecnologías de la información. Responsable del desarrollo, mantenimiento y soporte técnico de las plataformas digitales del programa Entre Pares Chiriquí.',
     especialidad: 'Facilitación TIC · Desarrollo Web · Soporte Técnico',
     enlace: 'https://jorgepolancorodriguez.pages.dev/',
-    foto: null,
+    foto: '/images/yo_en.gif',
   },
   {
     nombre: 'Alba',
