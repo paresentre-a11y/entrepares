@@ -6,15 +6,23 @@ export default function Footer() {
     <footer className="bg-gris-oscuro text-white pt-14 pb-6">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
-          <div className="text-center">
+          <div className="flex flex-col items-center">
             <img
               src="/images/logo.png"
               alt="Entre Pares Chiriquí"
-              className="h-14 w-auto mx-auto mb-4 object-contain brightness-0 invert"
+              width={160}
+              height={64}
+              className="h-16 w-auto mx-auto mb-4 object-contain brightness-0 invert"
               onError={e => {
                 e.target.src = 'https://www.entrepares.cloud/images/logo.png'
               }}
             />
+            <p className="text-white/60 text-sm text-center">
+              Entre Pares Chiriquí
+            </p>
+            <p className="text-white/40 text-xs text-center mt-1">
+              Región Educativa de Chiriquí — MEDUCA
+            </p>
           </div>
           <div className="text-center">
             <h4 className="font-display font-semibold mb-4 text-white">Contacto</h4>
