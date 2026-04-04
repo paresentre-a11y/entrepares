@@ -3,25 +3,12 @@ import { useState } from 'react'
 
 const EQUIPO = [
   {
-    nombre: 'Floridali [completar apellido]',
-    cargo: 'Coordinadora',
-    descripcion: 'Coordinadora del programa Entre Pares Chiriquí. Lidera el equipo de facilitadores de la Región Educativa de Chiriquí hacia la transformación educativa digital.',
-    especialidad: 'Coordinación y Liderazgo Educativo',
-    foto: null,
-  },
-  {
     nombre: 'Jorge Polanco',
     cargo: 'Programador y Soporte Técnico',
     descripcion: 'Responsable de la infraestructura tecnológica del programa. Desarrolla y mantiene las plataformas digitales que apoyan la gestión educativa.',
     especialidad: 'Desarrollo Web y Soporte TIC',
     foto: '/images/yo_en.gif',
-  },
-  {
-    nombre: 'Rudy',
-    cargo: 'Docente Facilitador',
-    descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
-    especialidad: 'Facilitación Educativa',
-    foto: null,
+    web: 'https://jorgepolancorodriguez.pages.dev',
   },
   {
     nombre: 'Alba',
@@ -59,6 +46,13 @@ const EQUIPO = [
     foto: null,
   },
   {
+    nombre: 'Floridali [completar apellido]',
+    cargo: 'Coordinadora',
+    descripcion: 'Coordinadora del programa Entre Pares Chiriquí. Lidera el equipo de facilitadores de la Región Educativa de Chiriquí hacia la transformación educativa digital.',
+    especialidad: 'Coordinación y Liderazgo Educativo',
+    foto: null,
+  },
+  {
     nombre: 'Gerald',
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
@@ -88,6 +82,13 @@ const EQUIPO = [
   },
   {
     nombre: 'Nico',
+    cargo: 'Docente Facilitador',
+    descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
+    especialidad: 'Facilitación Educativa',
+    foto: null,
+  },
+  {
+    nombre: 'Rudy',
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
@@ -217,6 +218,19 @@ function ModalMiembro({ miembro, onCerrar }) {
                 <span>{miembro.especialidad}</span>
               </div>
             )}
+            {miembro.web && (
+              <a href={miembro.web}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="flex items-center gap-2 text-sm
+                            bg-gradient-to-r from-azul-claro to-azul-medio
+                            text-white rounded-xl px-4 py-3
+                            font-medium hover:opacity-90
+                            transition-opacity mt-3">
+                <span className="text-lg">🔗</span>
+                <span>Visitar sitio web</span>
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -289,6 +303,15 @@ export default function EquipoPage() {
               <span className="text-azul-claro text-xs font-semibold">
                 {miembro.cargo}
               </span>
+              {miembro.web && (
+                <a href={miembro.web}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="block mt-2 text-xs text-azul-medio
+                              hover:underline font-medium">
+                  🔗 Visitar sitio web
+                </a>
+              )}
             </div>
           </div>
         ))}
