@@ -6,90 +6,163 @@ import { obtenerArticulos, formatearFecha, CATEGORIAS } from '@/lib/blog'
 // ── Slides del carrusel ──
 const SLIDES = [
   {
+    imagen: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=85',
     emoji: '📚',
     titulo: 'Aula Lista para Usar',
-    items: ['Recursos didácticos', 'Materiales para tus clases', 'Actividades y guías prácticas'],
-    bg: 'from-[#003580] to-[#0047AB]',
+    subtitulo: 'Recursos Educativos',
+    items: [
+      'Recursos didácticos para tus clases',
+      'Materiales y actividades prácticas',
+      'Guías listas para implementar',
+    ],
   },
   {
+    imagen: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1400&q=85',
     emoji: '🎓',
     titulo: 'Crece como Docente',
-    items: ['Cursos y capacitaciones', 'Formación continua', 'Desarrollo profesional'],
-    bg: 'from-[#0047AB] to-[#0066CC]',
+    subtitulo: 'Formación y Cursos',
+    items: [
+      'Cursos y capacitaciones certificadas',
+      'Formación continua y desarrollo',
+      'Comunidad de aprendizaje entre pares',
+    ],
   },
   {
+    imagen: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1400&q=85',
     emoji: '💻',
     titulo: 'Enseña con Tecnología',
-    items: ['Herramientas digitales', 'Apps educativas', 'Innovación en el aula'],
-    bg: 'from-[#0066CC] to-[#0080FF]',
+    subtitulo: 'Innovación Educativa',
+    items: [
+      'Herramientas digitales educativas',
+      'Apps y plataformas para el aula',
+      'Innovación pedagógica con TIC',
+    ],
   },
 ]
 
 function Carrusel() {
   const [actual, setActual] = useState(0)
+  const [animando, setAnimando] = useState(false)
   const timer = useRef(null)
+
+  const cambiarA = (siguiente) => {
+    if (animando) return
+    setAnimando(true)
+    setTimeout(() => {
+      setActual(siguiente)
+      setAnimando(false)
+    }, 400)
+  }
 
   const iniciarTimer = () => {
     clearInterval(timer.current)
     timer.current = setInterval(() => {
-      setActual(prev => (prev + 1) % SLIDES.length)
-    }, 4500)
+      cambiarA((actual + 1) % SLIDES.length)
+    }, 5500)
   }
 
-  useEffect(() => { iniciarTimer(); return () => clearInterval(timer.current) }, [])
+  useEffect(() => {
+    iniciarTimer()
+    return () => clearInterval(timer.current)
+  }, [actual])
 
-  const irA = (i) => { setActual(i); iniciarTimer() }
-  const anterior = () => { irA((actual - 1 + SLIDES.length) % SLIDES.length) }
-  const siguiente = () => { irA((actual + 1) % SLIDES.length) }
+  const irA = (i) => {
+    if (i === actual) return
+    cambiarA(i)
+  }
 
   const s = SLIDES[actual]
 
   return (
-    <div className={`relative bg-gradient-to-br ${s.bg} rounded-2xl overflow-hidden
-                     mb-10 transition-all duration-700`}>
-      <div className="flex flex-col md:flex-row items-center gap-6 px-8 py-10 md:py-12">
+    <div className="relative rounded-2xl overflow-hidden mb-10
+                    h-72 md:h-96 shadow-ep-lg">
 
-        {/* Icono */}
-        <div className="text-7xl md:text-8xl select-none flex-shrink-0">
-          {s.emoji}
+      {/* Imágenes con crossfade */}
+      {SLIDES.map((slide, i) => (
+        <div key={i}
+             className={`absolute inset-0 transition-all duration-1000
+               ${i === actual
+                 ? 'opacity-100 scale-100'
+                 : 'opacity-0 scale-105'}`}>
+          <img src={slide.imagen} alt={slide.titulo}
+               className="w-full h-full object-cover" />
         </div>
+      ))}
 
-        {/* Contenido */}
-        <div className="flex-1 text-white text-center md:text-left">
-          <h2 className="font-display font-bold text-2xl md:text-3xl mb-3">
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r
+                      from-black/75 via-black/40 to-transparent" />
+
+      {/* Partículas decorativas */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(4)].map((_, i) => (
+          <div key={i}
+               className="absolute rounded-full bg-white/8"
+               style={{
+                 width: `${80 + i * 50}px`,
+                 height: `${80 + i * 50}px`,
+                 right: `${5 + i * 8}%`,
+                 top: `${5 + i * 18}%`,
+                 animation: `pulsar-luz ${2 + i * 0.6}s ease-in-out infinite`,
+                 animationDelay: `${i * 0.3}s`,
+                 filter: 'blur(25px)',
+               }} />
+        ))}
+      </div>
+
+      {/* Contenido */}
+      <div className={`absolute inset-0 flex items-center z-10
+                       transition-all duration-400
+                       ${animando
+                         ? 'opacity-0 translate-x-6'
+                         : 'opacity-100 translate-x-0'}`}>
+        <div className="px-8 md:px-14 max-w-xl">
+          <span className="inline-block bg-white/15 backdrop-blur-sm
+                           text-white text-xs font-semibold px-3 py-1.5
+                           rounded-full mb-3 border border-white/25">
+            {s.emoji} {s.subtitulo}
+          </span>
+          <h2 className="font-display font-bold text-white
+                         text-2xl md:text-4xl leading-tight mb-4
+                         drop-shadow-lg">
             {s.titulo}
           </h2>
-          <ul className="space-y-1.5">
+          <ul className="space-y-2">
             {s.items.map((item, i) => (
-              <li key={i} className="flex items-center gap-2
-                                     justify-center md:justify-start">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/60 flex-shrink-0" />
-                <span className="text-white/85 text-sm md:text-base">{item}</span>
+              <li key={i} className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full
+                                 bg-white/80 flex-shrink-0" />
+                <span className="text-white/90 text-sm md:text-base
+                                 drop-shadow">
+                  {item}
+                </span>
               </li>
             ))}
           </ul>
         </div>
-
-        {/* Controles */}
-        <div className="flex md:flex-col gap-3 flex-shrink-0">
-          <button onClick={anterior}
-                  className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/25
-                             text-white flex items-center justify-center
-                             transition-colors text-lg">‹</button>
-          <button onClick={siguiente}
-                  className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/25
-                             text-white flex items-center justify-center
-                             transition-colors text-lg">›</button>
-        </div>
       </div>
 
-      {/* Puntos indicadores */}
-      <div className="flex justify-center gap-2 pb-4">
+      {/* Puntos — SIN FLECHAS */}
+      <div className="absolute bottom-5 left-0 right-0
+                      flex justify-center gap-2 z-10">
         {SLIDES.map((_, i) => (
           <button key={i} onClick={() => irA(i)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300
-                    ${i === actual ? 'bg-white w-6' : 'bg-white/40'}`} />
+                  className={`h-2 rounded-full transition-all duration-500
+                    ${i === actual
+                      ? 'bg-white w-10 shadow-lg'
+                      : 'bg-white/40 w-2 hover:bg-white/70 hover:w-5'}`}
+                  aria-label={`Ir al slide ${i + 1}`} />
         ))}
+      </div>
+
+      {/* Barra de progreso */}
+      <div className="absolute bottom-0 left-0 right-0
+                      h-0.5 bg-white/20 z-10">
+        <div key={actual}
+             className="h-full bg-white/60 rounded-full"
+             style={{
+               animation: 'progreso-barra 5.5s linear forwards',
+             }} />
       </div>
     </div>
   )

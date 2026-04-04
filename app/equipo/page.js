@@ -3,18 +3,27 @@ import { useState } from 'react'
 
 const EQUIPO = [
   {
+    nombre: 'Floridali [Apellido]',
+    cargo: 'Coordinadora',
+    descripcion: 'Coordinadora del programa Entre Pares Chiriquí. Lidera el equipo de facilitadores de la Región Educativa de Chiriquí hacia la transformación educativa digital.',
+    especialidad: 'Coordinación y Liderazgo Educativo',
+    enlace: null,
+    foto: null,
+  },
+  {
     nombre: 'Jorge Polanco',
-    cargo: 'Programador y Soporte Técnico',
-    descripcion: 'Responsable de la infraestructura tecnológica del programa. Desarrolla y mantiene las plataformas digitales que apoyan la gestión educativa.',
-    especialidad: 'Desarrollo Web y Soporte TIC',
-    foto: '/images/yo_en.gif',
-    web: 'https://jorgepolancorodriguez.pages.dev',
+    cargo: 'Docente Facilitador · Coach TIC · Programador y Soporte Técnico',
+    descripcion: 'Docente facilitador y coach en tecnologías de la información. Responsable del desarrollo, mantenimiento y soporte técnico de las plataformas digitales del programa Entre Pares Chiriquí.',
+    especialidad: 'Facilitación TIC · Desarrollo Web · Soporte Técnico',
+    enlace: null,
+    foto: null,
   },
   {
     nombre: 'Alba',
     cargo: 'Docente Facilitadora',
     descripcion: 'Docente facilitadora de la Región Educativa de Chiriquí, comprometida con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -22,6 +31,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -29,6 +39,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -36,6 +47,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitadora',
     descripcion: 'Docente facilitadora de la Región Educativa de Chiriquí, comprometida con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -43,13 +55,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
-    foto: null,
-  },
-  {
-    nombre: 'Floridali [completar apellido]',
-    cargo: 'Coordinadora',
-    descripcion: 'Coordinadora del programa Entre Pares Chiriquí. Lidera el equipo de facilitadores de la Región Educativa de Chiriquí hacia la transformación educativa digital.',
-    especialidad: 'Coordinación y Liderazgo Educativo',
+    enlace: null,
     foto: null,
   },
   {
@@ -57,6 +63,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -64,6 +71,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitadora',
     descripcion: 'Docente facilitadora de la Región Educativa de Chiriquí, comprometida con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -71,6 +79,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -78,6 +87,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitadora',
     descripcion: 'Docente facilitadora de la Región Educativa de Chiriquí, comprometida con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -85,6 +95,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -92,6 +103,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -99,6 +111,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitadora',
     descripcion: 'Docente facilitadora de la Región Educativa de Chiriquí, comprometida con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -106,6 +119,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitadora',
     descripcion: 'Docente facilitadora de la Región Educativa de Chiriquí, comprometida con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
   {
@@ -113,6 +127,7 @@ const EQUIPO = [
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
     foto: null,
   },
 ]
@@ -130,19 +145,20 @@ function ModalMiembro({ miembro, onCerrar }) {
           position: 'relative',
           borderRadius: '1.25rem',
           padding: '3px',
-          background: 'linear-gradient(135deg, #003580, #0066CC, #00d4ff, #ffffff, #0066CC, #003580)',
+          background: 'linear-gradient(135deg,#003580,#0066CC,#00d4ff,#fff,#0066CC,#003580)',
           backgroundSize: '300% 300%',
           animation: 'gradiente-luz 3s ease infinite',
-          boxShadow: '0 0 30px rgba(0,102,204,0.6), 0 0 60px rgba(0,102,204,0.3), 0 0 90px rgba(0,212,255,0.2)',
+          boxShadow: '0 0 30px rgba(0,102,204,0.6),0 0 60px rgba(0,102,204,0.3),0 0 90px rgba(0,212,255,0.2)',
           maxWidth: '28rem',
           width: '100%',
         }}
       >
+        {/* Marco de luz rotando */}
         <div style={{
           position: 'absolute',
           inset: '-4px',
           borderRadius: '1.35rem',
-          background: 'conic-gradient(from 0deg, transparent 0deg, #0066CC 60deg, #00d4ff 120deg, #ffffff 180deg, #0066CC 240deg, transparent 360deg)',
+          background: 'conic-gradient(from 0deg,transparent 0deg,#0066CC 60deg,#00d4ff 120deg,#fff 180deg,#0066CC 240deg,transparent 360deg)',
           animation: 'rotar-luz 3s linear infinite',
           zIndex: -1,
           filter: 'blur(8px)',
@@ -156,7 +172,8 @@ function ModalMiembro({ miembro, onCerrar }) {
           position: 'relative',
           zIndex: 1,
         }}>
-          <div className="relative h-48 bg-gradient-to-br
+          {/* Header */}
+          <div className="relative h-44 bg-gradient-to-br
                           from-azul-oscuro to-azul-claro
                           flex items-center justify-center overflow-hidden">
             {miembro.foto ? (
@@ -171,17 +188,18 @@ function ModalMiembro({ miembro, onCerrar }) {
               </div>
             )}
 
+            {/* Partículas flotantes */}
             {[...Array(8)].map((_, i) => (
               <div key={i}
-                   className="absolute rounded-full bg-white/20"
+                   className="absolute rounded-full bg-white/15"
                    style={{
-                     width: `${8 + i * 4}px`,
-                     height: `${8 + i * 4}px`,
-                     left: `${10 + i * 11}%`,
-                     top: `${15 + (i % 4) * 20}%`,
+                     width: `${8 + i * 5}px`,
+                     height: `${8 + i * 5}px`,
+                     left: `${8 + i * 11}%`,
+                     top: `${10 + (i % 4) * 22}%`,
                      animation: `pulsar-luz ${1.5 + i * 0.25}s ease-in-out infinite`,
                      animationDelay: `${i * 0.15}s`,
-                     filter: 'blur(2px)',
+                     filter: 'blur(3px)',
                    }} />
             ))}
 
@@ -195,40 +213,41 @@ function ModalMiembro({ miembro, onCerrar }) {
             </button>
           </div>
 
+          {/* Info */}
           <div className="p-6">
             <h3 className="font-display font-bold text-azul-oscuro
                            text-xl mb-2">
               {miembro.nombre}
             </h3>
             <span className="inline-block bg-gradient-to-r
-                             from-azul-claro to-azul-medio
-                             text-white text-xs font-semibold
-                             px-4 py-1.5 rounded-full mb-4
-                             shadow-md">
+                             from-azul-claro to-azul-medio text-white
+                             text-xs font-semibold px-4 py-1.5
+                             rounded-full mb-4 shadow-md">
               {miembro.cargo}
             </span>
             <p className="text-ep-suave text-sm leading-relaxed mb-4">
               {miembro.descripcion}
             </p>
             {miembro.especialidad && (
-              <div className="flex items-center gap-2 text-sm
+              <div className="flex items-start gap-2 text-sm
                               bg-gris-claro rounded-xl px-4 py-3
-                              text-azul-oscuro font-medium">
-                <span className="text-lg">🎯</span>
+                              text-azul-oscuro font-medium mb-4">
+                <span className="text-lg flex-shrink-0">🎯</span>
                 <span>{miembro.especialidad}</span>
               </div>
             )}
-            {miembro.web && (
-              <a href={miembro.web}
+            {miembro.enlace && (
+              <a href={miembro.enlace}
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="flex items-center gap-2 text-sm
-                            bg-gradient-to-r from-azul-claro to-azul-medio
-                            text-white rounded-xl px-4 py-3
-                            font-medium hover:opacity-90
-                            transition-opacity mt-3">
-                <span className="text-lg">🔗</span>
-                <span>Visitar sitio web</span>
+                 className="inline-flex items-center gap-2 text-sm
+                            text-azul-claro font-semibold
+                            hover:text-azul-medio transition-colors
+                            border border-azul-claro/30 px-4 py-2
+                            rounded-xl hover:bg-azul-claro/5">
+                <span>🔗</span>
+                <span>Ver página</span>
+                <span>→</span>
               </a>
             )}
           </div>
@@ -251,8 +270,8 @@ export default function EquipoPage() {
         Docentes facilitadores de la Región Educativa de Chiriquí — MEDUCA
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2
-                      lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3
+                      lg:grid-cols-4 xl:grid-cols-5 gap-5">
         {EQUIPO.map((miembro, i) => (
           <div key={i}
                onClick={() => setSeleccionado(miembro)}
@@ -260,7 +279,8 @@ export default function EquipoPage() {
                           cursor-pointer group hover:-translate-y-2
                           hover:shadow-ep-lg transition-all duration-300">
 
-            <div className="h-52 bg-gradient-to-br from-azul-oscuro
+            {/* Solo foto o avatar — sin cargo visible */}
+            <div className="h-44 bg-gradient-to-br from-azul-oscuro
                             to-azul-claro flex items-center
                             justify-center relative overflow-hidden">
               {miembro.foto ? (
@@ -269,54 +289,40 @@ export default function EquipoPage() {
                                 group-hover:scale-110
                                 transition-transform duration-700" />
               ) : (
-                <div className="w-20 h-20 rounded-full bg-white/20
+                <div className="w-18 h-18 rounded-full bg-white/20
                                 border-4 border-white/40 flex items-center
                                 justify-center text-white font-display
-                                font-bold text-3xl">
+                                font-bold text-3xl w-20 h-20">
                   {miembro.nombre.charAt(0)}
                 </div>
               )}
 
+              {/* Overlay hover */}
               <div className="absolute inset-0 bg-gradient-to-t
-                              from-azul-oscuro/70 to-transparent
+                              from-azul-oscuro/80 to-transparent
                               opacity-0 group-hover:opacity-100
                               transition-opacity duration-300
-                              flex items-end justify-center pb-4">
+                              flex items-end justify-center pb-3">
                 <span className="text-white text-xs font-semibold
-                                 bg-white/20 px-4 py-1.5 rounded-full
+                                 bg-white/20 px-3 py-1 rounded-full
                                  backdrop-blur-sm border border-white/30">
-                  Ver perfil ✨
+                  Ver info ✨
                 </span>
               </div>
-
-              <div className="absolute -top-10 -right-10 w-24 h-24
-                              rounded-full bg-white/10
-                              group-hover:scale-150 group-hover:opacity-50
-                              transition-all duration-700 opacity-0" />
             </div>
 
-            <div className="p-4 text-center">
+            {/* Solo nombre — sin cargo */}
+            <div className="p-3 text-center">
               <h3 className="font-display font-bold text-azul-oscuro
-                             text-base mb-1 line-clamp-1">
+                             text-sm leading-tight line-clamp-2">
                 {miembro.nombre}
               </h3>
-              <span className="text-azul-claro text-xs font-semibold">
-                {miembro.cargo}
-              </span>
-              {miembro.web && (
-                <a href={miembro.web}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   className="block mt-2 text-xs text-azul-medio
-                              hover:underline font-medium">
-                  🔗 Visitar sitio web
-                </a>
-              )}
             </div>
           </div>
         ))}
       </div>
 
+      {/* Modal */}
       {seleccionado && (
         <ModalMiembro
           miembro={seleccionado}

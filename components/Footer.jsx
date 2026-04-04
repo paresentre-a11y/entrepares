@@ -10,14 +10,12 @@ export default function Footer() {
             <img
               src="/images/logo.png"
               alt="Entre Pares Chiriquí"
-              width={160}
-              height={64}
-              className="h-16 w-auto mx-auto mb-4 object-contain brightness-0 invert"
+              className="h-16 w-auto mx-auto mb-3 object-contain brightness-0 invert"
               onError={e => {
                 e.target.src = 'https://www.entrepares.cloud/images/logo.png'
               }}
             />
-            <p className="text-white/60 text-sm text-center">
+            <p className="text-white/60 text-sm text-center font-display font-medium">
               Entre Pares Chiriquí
             </p>
             <p className="text-white/40 text-xs text-center mt-1">
