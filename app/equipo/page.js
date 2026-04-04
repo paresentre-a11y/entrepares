@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const EQUIPO = [
   {
-    nombre: 'Floridali',
+    nombre: 'Floridalia',
     cargo: 'Coordinadora',
     descripcion: 'Coordinadora del programa Entre Pares Chiriquí. Lidera el equipo de facilitadores de la Región Educativa de Chiriquí hacia la transformación educativa digital.',
     especialidad: 'Coordinación y Liderazgo Educativo',
