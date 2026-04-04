@@ -3,19 +3,11 @@ import { useState } from 'react'
 
 const EQUIPO = [
   {
-    nombre: 'Floridalia',
-    cargo: 'Coordinadora',
-    descripcion: 'Coordinadora del programa Entre Pares Chiriquí. Lidera el equipo de facilitadores de la Región Educativa de Chiriquí hacia la transformación educativa digital.',
-    especialidad: 'Coordinación y Liderazgo Educativo',
-    enlace: null,
-    foto: null,
-  },
-  {
     nombre: 'Jorge Polanco',
     cargo: 'Docente Facilitador · Coach TIC · Programador y Soporte Técnico',
     descripcion: 'Docente facilitador y coach en tecnologías de la información. Responsable del desarrollo, mantenimiento y soporte técnico de las plataformas digitales del programa Entre Pares Chiriquí.',
     especialidad: 'Facilitación TIC · Desarrollo Web · Soporte Técnico',
-    enlace: null,
+    enlace: 'https://jorgepolancorodriguez.pages.dev/',
     foto: null,
   },
   {
@@ -55,6 +47,14 @@ const EQUIPO = [
     cargo: 'Docente Facilitador',
     descripcion: 'Docente facilitador de la Región Educativa de Chiriquí, comprometido con la transformación educativa digital.',
     especialidad: 'Facilitación Educativa',
+    enlace: null,
+    foto: null,
+  },
+  {
+    nombre: 'Floridali [Apellido]',
+    cargo: 'Coordinadora',
+    descripcion: 'Coordinadora del programa Entre Pares Chiriquí. Lidera el equipo de facilitadores de la Región Educativa de Chiriquí hacia la transformación educativa digital.',
+    especialidad: 'Coordinación y Liderazgo Educativo',
     enlace: null,
     foto: null,
   },
