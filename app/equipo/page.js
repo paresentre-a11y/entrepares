@@ -6,7 +6,7 @@ const EQUIPO = [
   {
     nombre: 'Jorge Polanco',
     cargo: 'Docente Facilitador · Coach TIC · Programador y Soporte Técnico',
-    descripcion: 'Docente facilitador y coach en tecnologías de la información. Responsable del desarrollo, mantenimiento y soporte técnico de las plataformas digitales del programa Entre Pares Chiriquí.',
+    descripcion: 'Soporte Técnico en Meduca | Coach en TIC educativas | Desarrollador web y gestor de bases de datos con más de 15 años de experiencia.',
     especialidad: 'Facilitación TIC · Desarrollo Web · Soporte Técnico',
     enlace: 'https://jorgepolancorodriguez.pages.dev/',
     foto: '/images/yo_en.gif',
