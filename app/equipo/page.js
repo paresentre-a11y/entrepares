@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import AnimatedCard from '@/components/AnimatedCard'
 
 const EQUIPO = [
   {
@@ -273,12 +274,12 @@ export default function EquipoPage() {
       <div className="grid grid-cols-2 sm:grid-cols-3
                       lg:grid-cols-4 xl:grid-cols-5 gap-5">
         {EQUIPO.map((miembro, i) => (
-          <div key={i}
-               onClick={() => setSeleccionado(miembro)}
-               className="bg-white rounded-2xl shadow-ep overflow-hidden
-                          cursor-pointer group hover:-translate-y-2
-                          hover:shadow-ep-lg transition-all duration-300">
-
+          <AnimatedCard
+            key={i}
+            delay={Math.min(i * 0.07, 0.35)}
+            onClick={() => setSeleccionado(miembro)}
+            className="bg-white rounded-2xl shadow-ep overflow-hidden"
+          >
             {/* Solo foto o avatar — sin cargo visible */}
             <div className="h-44 bg-gradient-to-br from-azul-oscuro
                             to-azul-claro flex items-center
@@ -318,7 +319,7 @@ export default function EquipoPage() {
                 {miembro.nombre}
               </h3>
             </div>
-          </div>
+          </AnimatedCard>
         ))}
       </div>
 

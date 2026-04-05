@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { obtenerArticulos, formatearFecha, CATEGORIAS } from '@/lib/blog'
+import AnimatedCard from '@/components/AnimatedCard'
 
 // ── Slides del carrusel ──
 const SLIDES = [
@@ -233,11 +234,13 @@ export default function BlogPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articulos.map(a => (
-            <article key={a.id}
-                     className="bg-white rounded-2xl shadow-ep overflow-hidden
-                                hover:-translate-y-1 hover:shadow-ep-lg
-                                transition-all duration-300 flex flex-col">
+          {articulos.map((a, i) => (
+            <AnimatedCard
+              key={a.id}
+              delay={Math.min(i * 0.08, 0.4)}
+              onClick={() => setModal(a)}
+              className="bg-white rounded-2xl shadow-ep overflow-hidden flex flex-col"
+            >
               {/* Imagen */}
               {a.imagen_url ? (
                 <img src={a.imagen_url} alt={a.titulo}
@@ -286,7 +289,7 @@ export default function BlogPage() {
                   </button>
                 </div>
               </div>
-            </article>
+            </AnimatedCard>
           ))}
         </div>
       )}
