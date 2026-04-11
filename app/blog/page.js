@@ -7,7 +7,7 @@ import GSAPReveal from '@/components/GSAPReveal'
 // ── Slides del carrusel ──
 const SLIDES = [
   {
-    imagen: '/images/20260224_153256.jpg',
+    imagen: '/images/20260224_153256.webp',
     emoji: '📚',
     titulo: 'Aula Lista para Usar',
     subtitulo: 'Recursos Educativos',
@@ -18,7 +18,7 @@ const SLIDES = [
     ],
   },
   {
-    imagen: '/images/20260225_104339.jpg',
+    imagen: '/images/20260225_104339.webp',
     emoji: '🎓',
     titulo: 'Crece como Docente',
     subtitulo: 'Formación y Cursos',
@@ -29,7 +29,7 @@ const SLIDES = [
     ],
   },
   {
-    imagen: '/images/20260225_104406.jpg',
+    imagen: '/images/20260225_104406.webp',
     emoji: '💻',
     titulo: 'Enseña con Tecnología',
     subtitulo: 'Innovación Educativa',

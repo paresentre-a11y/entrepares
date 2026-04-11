@@ -3,3 +3,13 @@ node_modules
 .env
 .env.local
 .DS_Store
+
+# Imágenes originales JPG (optimizadas a WebP)
+public/images/*.jpg
+public/images/*.jpeg
+public/images/*.JPG
+public/images/*.JPEG
+
+# Videos grandes
+public/images/*.mp4
+public/images/*.MP4
