@@ -70,3 +70,53 @@
   0%   { width: 0%; }
   100% { width: 100%; }
 }
+
+/* ═══════════════════════════════════════
+   GSAP — ocultar elementos antes de animar
+   ═══════════════════════════════════════ */
+.hero-logo,
+.hero-titulo,
+.hero-subtitulo,
+.hero-botones,
+.hero-scroll-indicator {
+  opacity: 0;
+}
+
+/* Smooth scroll — Lenis maneja el smooth scroll */
+html {
+  scroll-behavior: auto;
+}
+
+/* Optimización de renders */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Cursor personalizado — desktop only */
+@media (pointer: fine) {
+  * { cursor: none; }
+
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: #0066CC;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+  }
+
+  .cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(0,102,204,0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: all 0.12s ease-out;
+  }
+}

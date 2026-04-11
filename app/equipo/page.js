@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import AnimatedCard from '@/components/AnimatedCard'
+import GSAPReveal from '@/components/GSAPReveal'
 
 const EQUIPO = [
   {
@@ -263,65 +263,65 @@ export default function EquipoPage() {
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-12">
-      <h1 className="font-display font-bold text-azul-oscuro
-                     text-4xl mb-3">
-        Nuestro Equipo
-      </h1>
-      <p className="text-ep-suave mb-10">
-        Docentes facilitadores de la Región Educativa de Chiriquí — MEDUCA
-      </p>
+      <GSAPReveal animacion="fade-left">
+        <h1 className="font-display font-bold text-azul-oscuro text-4xl mb-3">
+          Nuestro Equipo
+        </h1>
+        <p className="text-ep-suave mb-10">
+          Docentes facilitadores de la Región Educativa de Chiriquí — MEDUCA
+        </p>
+      </GSAPReveal>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3
-                      lg:grid-cols-4 xl:grid-cols-5 gap-5">
-        {EQUIPO.map((miembro, i) => (
-          <AnimatedCard
-            key={i}
-            delay={Math.min(i * 0.07, 0.35)}
-            onClick={() => setSeleccionado(miembro)}
-            className="bg-white rounded-2xl shadow-ep overflow-hidden"
-          >
-            {/* Solo foto o avatar — sin cargo visible */}
-            <div className="h-44 bg-gradient-to-br from-azul-oscuro
-                            to-azul-claro flex items-center
-                            justify-center relative overflow-hidden">
-              {miembro.foto ? (
-                <img src={miembro.foto} alt={miembro.nombre}
-                     className="w-full h-full object-cover
-                                group-hover:scale-110
-                                transition-transform duration-700" />
-              ) : (
-                <div className="w-18 h-18 rounded-full bg-white/20
-                                border-4 border-white/40 flex items-center
-                                justify-center text-white font-display
-                                font-bold text-3xl w-20 h-20">
-                  {miembro.nombre.charAt(0)}
+      <GSAPReveal animacion="zoom" stagger staggerSelector=".card-miembro">
+        <div className="grid grid-cols-2 sm:grid-cols-3
+                        lg:grid-cols-4 xl:grid-cols-5 gap-5">
+          {EQUIPO.map((miembro, i) => (
+            <div
+              key={i}
+              className="card-miembro stagger-item bg-white rounded-2xl shadow-ep overflow-hidden cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+              onClick={() => setSeleccionado(miembro)}
+            >
+              {/* Solo foto o avatar — sin cargo visible */}
+              <div className="h-44 bg-gradient-to-br from-azul-oscuro
+                              to-azul-claro flex items-center
+                              justify-center relative overflow-hidden">
+                {miembro.foto ? (
+                  <img src={miembro.foto} alt={miembro.nombre}
+                       className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-20 h-20 rounded-full bg-white/20
+                                  border-4 border-white/40 flex items-center
+                                  justify-center text-white font-display
+                                  font-bold text-3xl">
+                    {miembro.nombre.charAt(0)}
+                  </div>
+                )}
+
+                {/* Overlay hover */}
+                <div className="absolute inset-0 bg-gradient-to-t
+                                from-azul-oscuro/80 to-transparent
+                                opacity-0 hover:opacity-100
+                                transition-opacity duration-300
+                                flex items-end justify-center pb-3">
+                  <span className="text-white text-xs font-semibold
+                                   bg-white/20 px-3 py-1 rounded-full
+                                   backdrop-blur-sm border border-white/30">
+                    Ver info ✨
+                  </span>
                 </div>
-              )}
+              </div>
 
-              {/* Overlay hover */}
-              <div className="absolute inset-0 bg-gradient-to-t
-                              from-azul-oscuro/80 to-transparent
-                              opacity-0 group-hover:opacity-100
-                              transition-opacity duration-300
-                              flex items-end justify-center pb-3">
-                <span className="text-white text-xs font-semibold
-                                 bg-white/20 px-3 py-1 rounded-full
-                                 backdrop-blur-sm border border-white/30">
-                  Ver info ✨
-                </span>
+              {/* Solo nombre — sin cargo */}
+              <div className="p-3 text-center">
+                <h3 className="font-display font-bold text-azul-oscuro
+                               text-sm leading-tight line-clamp-2">
+                  {miembro.nombre}
+                </h3>
               </div>
             </div>
-
-            {/* Solo nombre — sin cargo */}
-            <div className="p-3 text-center">
-              <h3 className="font-display font-bold text-azul-oscuro
-                             text-sm leading-tight line-clamp-2">
-                {miembro.nombre}
-              </h3>
-            </div>
-          </AnimatedCard>
-        ))}
-      </div>
+          ))}
+        </div>
+      </GSAPReveal>
 
       {/* Modal */}
       {seleccionado && (

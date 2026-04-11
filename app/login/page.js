@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { login, verificarSesion, resetPassword } from '@/lib/auth'
+import gsap from 'gsap'
 
 export default function LoginPage() {
   const [email, setEmail]       = useState('')
@@ -16,6 +17,62 @@ export default function LoginPage() {
 
   useEffect(() => {
     verificarSesion().then(u => { if (u) router.push('/dashboard') })
+  }, [])
+
+  // ── GSAP — animación de entrada de paneles ──
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const ctx = gsap.context(() => {
+
+      // Panel izquierdo entra desde la izquierda
+      gsap.fromTo('.panel-izquierdo',
+        { opacity: 0, x: -80 },
+        { opacity: 1, x: 0,
+          duration: 0.9, ease: 'power3.out', delay: 0.1 }
+      )
+
+      // Panel derecho entra desde la derecha
+      gsap.fromTo('.panel-derecho',
+        { opacity: 0, x: 80 },
+        { opacity: 1, x: 0,
+          duration: 0.9, ease: 'power3.out', delay: 0.2 }
+      )
+
+      // Stats entran con stagger
+      gsap.fromTo('.login-stat',
+        { opacity: 0, x: -30, scale: 0.9 },
+        {
+          opacity: 1, x: 0, scale: 1,
+          duration: 0.5,
+          stagger: 0.12,
+          ease: 'back.out(1.4)',
+          delay: 0.6,
+        }
+      )
+
+      // Formulario entra con fade
+      gsap.fromTo('.login-form-wrapper',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0,
+          duration: 0.7, ease: 'power3.out', delay: 0.5 }
+      )
+
+      // Blobs flotantes del panel izquierdo
+      gsap.to('.login-blob',
+        {
+          y: -20,
+          duration: 4,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          stagger: 1.5,
+        }
+      )
+
+    })
+
+    return () => ctx.revert()
   }, [])
 
   const handleLogin = async (e) => {
@@ -37,13 +94,13 @@ export default function LoginPage() {
     <div className="min-h-screen flex font-body">
 
       {/* PANEL IZQUIERDO */}
-      <div className="hidden lg:flex flex-[0_0_58%] relative overflow-hidden
+      <div className="panel-izquierdo hidden lg:flex flex-[0_0_58%] relative overflow-hidden
                       items-center justify-center p-16"
            style={{background:'linear-gradient(145deg,#001a4d,#003580 45%,#0050b3)'}}>
-        {/* Decoración */}
-        <div className="absolute w-[500px] h-[500px] rounded-full -top-28 -right-28
+        {/* Decoración — blobs */}
+        <div className="login-blob absolute w-[500px] h-[500px] rounded-full -top-28 -right-28
                         bg-white/[0.03]" />
-        <div className="absolute w-[300px] h-[300px] rounded-full -bottom-16 -left-16
+        <div className="login-blob absolute w-[300px] h-[300px] rounded-full -bottom-16 -left-16
                         bg-white/[0.04]" />
 
         <div className="relative z-10 max-w-md w-full text-white">
@@ -75,7 +132,7 @@ export default function LoginPage() {
               { icon: '🏫',  num: '100%', lbl: 'Compromiso Educativo' },
             ].map(s => (
               <div key={s.lbl}
-                   className="flex items-center gap-4 bg-white/8 border
+                   className="login-stat flex items-center gap-4 bg-white/8 border
                               border-white/12 rounded-xl px-5 py-3.5
                               backdrop-blur-sm hover:bg-white/12
                               transition-all duration-300">
@@ -97,8 +154,8 @@ export default function LoginPage() {
       </div>
 
       {/* PANEL DERECHO */}
-      <div className="flex-1 flex items-center justify-center p-6 bg-white">
-        <div className="w-full max-w-sm">
+      <div className="panel-derecho flex-1 flex items-center justify-center p-6 bg-white">
+        <div className="login-form-wrapper w-full max-w-sm">
           <Image src="/images/logo.png" alt="Entre Pares" width={120} height={62}
                  className="h-16 w-auto mx-auto mb-7 object-contain" />
           <h2 className="font-display font-bold text-azul-oscuro text-3xl

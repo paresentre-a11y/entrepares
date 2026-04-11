@@ -2,12 +2,12 @@
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { obtenerArticulos, formatearFecha, CATEGORIAS } from '@/lib/blog'
-import AnimatedCard from '@/components/AnimatedCard'
+import GSAPReveal from '@/components/GSAPReveal'
 
 // ── Slides del carrusel ──
 const SLIDES = [
   {
-    imagen: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=85',
+    imagen: '/images/20260224_153256.jpg',
     emoji: '📚',
     titulo: 'Aula Lista para Usar',
     subtitulo: 'Recursos Educativos',
@@ -18,7 +18,7 @@ const SLIDES = [
     ],
   },
   {
-    imagen: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1400&q=85',
+    imagen: '/images/20260225_104339.jpg',
     emoji: '🎓',
     titulo: 'Crece como Docente',
     subtitulo: 'Formación y Cursos',
@@ -29,7 +29,7 @@ const SLIDES = [
     ],
   },
   {
-    imagen: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1400&q=85',
+    imagen: '/images/20260225_104406.jpg',
     emoji: '💻',
     titulo: 'Enseña con Tecnología',
     subtitulo: 'Innovación Educativa',
@@ -187,34 +187,40 @@ export default function BlogPage() {
     <main className="max-w-6xl mx-auto px-6 py-10">
 
       {/* ── Carrusel banner ── */}
-      <Carrusel />
+      <GSAPReveal animacion="fade-down">
+        <Carrusel />
+      </GSAPReveal>
 
       {/* ── Título sección ── */}
-      <div className="mb-8">
-        <h1 className="font-display font-bold text-azul-oscuro text-4xl mb-2">
-          Blog Educativo
-        </h1>
-        <p className="text-ep-suave">
-          Recursos y formación para docentes de la Región Educativa de Chiriquí
-        </p>
-      </div>
+      <GSAPReveal animacion="fade-down">
+        <div className="mb-8">
+          <h1 className="font-display font-bold text-azul-oscuro text-4xl mb-2">
+            Blog Educativo
+          </h1>
+          <p className="text-ep-suave">
+            Recursos y formación para docentes de la Región Educativa de Chiriquí
+          </p>
+        </div>
+      </GSAPReveal>
 
-      {/* ── Filtros por categoría (4 etiquetas) ── */}
-      <div className="flex flex-wrap gap-2.5 mb-8">
-        {CATEGORIAS.map(cat => (
-          <button
-            key={cat.id}
-            onClick={() => setCategoria(cat.id)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full
-              text-sm font-display font-semibold transition-all duration-200
-              ${categoriaActiva === cat.id
-                ? 'bg-azul-oscuro text-white shadow-ep'
-                : 'bg-white text-ep-texto border-2 border-gris-medio hover:border-azul-claro hover:text-azul-claro'}`}>
-            <span>{cat.emoji}</span>
-            <span>{cat.label}</span>
-          </button>
-        ))}
-      </div>
+      {/* ── Filtros por categoría ── */}
+      <GSAPReveal animacion="fade-up" delay={0.2} stagger staggerSelector="button">
+        <div className="flex flex-wrap gap-2.5 mb-8">
+          {CATEGORIAS.map(cat => (
+            <button
+              key={cat.id}
+              onClick={() => setCategoria(cat.id)}
+              className={`stagger-item flex items-center gap-2 px-4 py-2 rounded-full
+                text-sm font-display font-semibold transition-all duration-200
+                ${categoriaActiva === cat.id
+                  ? 'bg-azul-oscuro text-white shadow-ep'
+                  : 'bg-white text-ep-texto border-2 border-gris-medio hover:border-azul-claro hover:text-azul-claro'}`}>
+              <span>{cat.emoji}</span>
+              <span>{cat.label}</span>
+            </button>
+          ))}
+        </div>
+      </GSAPReveal>
 
       {/* ── Grid de artículos ── */}
       {cargando ? (
@@ -223,75 +229,78 @@ export default function BlogPage() {
                           border-t-azul-claro rounded-full animate-spin" />
         </div>
       ) : articulos.length === 0 ? (
-        <div className="text-center py-20">
-          <p className="text-5xl mb-4">📭</p>
-          <p className="font-display text-xl text-azul-oscuro font-bold mb-2">
-            No hay artículos en esta categoría
-          </p>
-          <p className="text-ep-suave text-sm">
-            Prueba con otra categoría o vuelve pronto
-          </p>
-        </div>
+        <GSAPReveal animacion="fade-up">
+          <div className="text-center py-20">
+            <p className="text-5xl mb-4">📭</p>
+            <p className="font-display text-xl text-azul-oscuro font-bold mb-2">
+              No hay artículos en esta categoría
+            </p>
+            <p className="text-ep-suave text-sm">
+              Prueba con otra categoría o vuelve pronto
+            </p>
+          </div>
+        </GSAPReveal>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articulos.map((a, i) => (
-            <AnimatedCard
-              key={a.id}
-              delay={Math.min(i * 0.08, 0.4)}
-              onClick={() => setModal(a)}
-              className="bg-white rounded-2xl shadow-ep overflow-hidden flex flex-col"
-            >
-              {/* Imagen */}
-              {a.imagen_url ? (
-                <img src={a.imagen_url} alt={a.titulo}
-                     className="w-full h-48 object-cover"
-                     onError={e => { e.target.style.display='none' }} />
-              ) : (
-                <div className="w-full h-48 bg-gradient-to-br from-azul-oscuro
-                                to-azul-claro flex items-center justify-center">
-                  <span className="text-5xl opacity-60">📄</span>
-                </div>
-              )}
-
-              <div className="p-5 flex flex-col flex-1">
-                {/* Categoría badge */}
-                {a.categoria && (
-                  <span className="inline-block self-start mb-2 px-2.5 py-1
-                                   bg-azul-oscuro/8 text-azul-oscuro text-xs
-                                   font-semibold rounded-lg">
-                    {CATEGORIAS.find(c => c.id === a.categoria)?.emoji}{' '}
-                    {CATEGORIAS.find(c => c.id === a.categoria)?.label || a.categoria}
-                  </span>
+        <GSAPReveal animacion="fade-up" delay={0.1} stagger staggerSelector="article">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articulos.map((a, i) => (
+              <article
+                key={a.id}
+                className="stagger-item bg-white rounded-2xl shadow-ep overflow-hidden flex flex-col cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+                onClick={() => setModal(a)}
+              >
+                {/* Imagen */}
+                {a.imagen_url ? (
+                  <img src={a.imagen_url} alt={a.titulo}
+                       className="w-full h-48 object-cover"
+                       onError={e => { e.target.style.display='none' }} />
+                ) : (
+                  <div className="w-full h-48 bg-gradient-to-br from-azul-oscuro
+                                  to-azul-claro flex items-center justify-center">
+                    <span className="text-5xl opacity-60">📄</span>
+                  </div>
                 )}
 
-                <p className="text-azul-claro text-xs font-medium mb-2">
-                  {formatearFecha(a.created_at)}
-                </p>
-                <h2 className="font-display font-bold text-azul-oscuro text-lg
-                               mb-2 line-clamp-2 leading-snug">
-                  {a.titulo}
-                </h2>
-                <p className="text-ep-suave text-sm line-clamp-3 mb-4 flex-1 leading-relaxed">
-                  {a.descripcion || a.contenido}
-                </p>
+                <div className="p-5 flex flex-col flex-1">
+                  {/* Categoría badge */}
+                  {a.categoria && (
+                    <span className="inline-block self-start mb-2 px-2.5 py-1
+                                     bg-azul-oscuro/8 text-azul-oscuro text-xs
+                                     font-semibold rounded-lg">
+                      {CATEGORIAS.find(c => c.id === a.categoria)?.emoji}{' '}
+                      {CATEGORIAS.find(c => c.id === a.categoria)?.label || a.categoria}
+                    </span>
+                  )}
 
-                <div className="flex items-center justify-between mt-auto pt-3
-                                border-t border-gris-medio">
-                  <p className="text-xs text-ep-suave">Por {a.autor}</p>
-                  {/* ── LEER MÁS ── */}
-                  <button
-                    onClick={() => setModal(a)}
-                    className="inline-flex items-center gap-1.5 text-azul-claro
-                               text-sm font-display font-semibold
-                               hover:text-azul-medio transition-colors group">
-                    Leer más
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </button>
+                  <p className="text-azul-claro text-xs font-medium mb-2">
+                    {formatearFecha(a.created_at)}
+                  </p>
+                  <h2 className="font-display font-bold text-azul-oscuro text-lg
+                                 mb-2 line-clamp-2 leading-snug">
+                    {a.titulo}
+                  </h2>
+                  <p className="text-ep-suave text-sm line-clamp-3 mb-4 flex-1 leading-relaxed">
+                    {a.descripcion || a.contenido}
+                  </p>
+
+                  <div className="flex items-center justify-between mt-auto pt-3
+                                  border-t border-gris-medio">
+                    <p className="text-xs text-ep-suave">Por {a.autor}</p>
+                    {/* ── LEER MÁS ── */}
+                    <button
+                      onClick={() => setModal(a)}
+                      className="inline-flex items-center gap-1.5 text-azul-claro
+                                 text-sm font-display font-semibold
+                                 hover:text-azul-medio transition-colors group">
+                      Leer más
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </AnimatedCard>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
+        </GSAPReveal>
       )}
 
       {/* ── Modal "Leer más" ── */}

@@ -9,6 +9,7 @@ const links = [
   { href: '/nosotros', label: 'Nosotros', emoji: '📋' },
   { href: '/equipo',   label: 'Equipo',   emoji: '👥' },
   { href: '/blog',     label: 'Blog',     emoji: '📚' },
+  { href: '/galeria',  label: 'Galería',  emoji: '📸' },
 ]
 
 export default function Navbar() {
